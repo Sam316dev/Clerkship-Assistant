@@ -128,7 +128,7 @@ with tab_hx:
         units_selected = st.multiselect("Select Internal Medicine Unit(s)", ["Cardiology", "Respiratory", "Gastroenterology", "Nephrology", "Endocrinology", "Neurology", "Haematology"], default=["Cardiology"])
         
         if "Cardiology" in units_selected:
-            st.markdown("#### 🫀 Cardiology")
+            st.markdown("####  Cardiology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_c")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Chest Pain", "Palpitations", "Shortness of Breath (Dyspnea)", "Lower Limb Swelling (Edema)", "Fainting (Syncope)", "Other"], key=f"cpc_{i}")
@@ -173,7 +173,7 @@ with tab_hx:
             st.divider()
 
         if "Respiratory" in units_selected:
-            st.markdown("#### 🫁 Respiratory")
+            st.markdown("####  Respiratory")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_r")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Cough", "Breathlessness (Dyspnea)", "Chest Pain (Pleuritic)", "Hemoptysis", "Other"], key=f"rpc_{i}")
@@ -215,7 +215,7 @@ with tab_hx:
             st.divider()
 
         if "Gastroenterology" in units_selected:
-            st.markdown("#### 🌭 Gastroenterology")
+            st.markdown("####  Gastroenterology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_g")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Abdominal Pain", "Vomiting", "Change in Bowel Habits", "Gastrointestinal Bleeding", "Jaundice", "Dysphagia", "Other"], key=f"gpc_{i}")
@@ -254,7 +254,7 @@ with tab_hx:
             st.divider()
 
         if "Nephrology" in units_selected:
-            st.markdown("#### 🫘 Nephrology")
+            st.markdown("####  Nephrology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_n")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Loin/Flank Pain", "Urine Appearance", "LUTS", "Edema", "Uremia Symptoms", "Other"], key=f"npc_{i}")
@@ -286,7 +286,7 @@ with tab_hx:
             st.divider()
 
         if "Endocrinology" in units_selected:
-            st.markdown("#### 🦋 Endocrinology")
+            st.markdown("####  Endocrinology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_e")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Polyuria/Polydipsia", "Weight Change", "Neck Swelling", "Temperature Intolerance", "Other"], key=f"epc_{i}")
@@ -312,7 +312,7 @@ with tab_hx:
             st.divider()
 
         if "Neurology" in units_selected:
-            st.markdown("#### 🧠 Neurology")
+            st.markdown("####  Neurology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_nn")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Weakness", "Seizures", "Headache", "Numbness", "Other"], key=f"nnpc_{i}")
@@ -339,7 +339,7 @@ with tab_hx:
             st.divider()
 
         if "Haematology" in units_selected:
-            st.markdown("#### 🩸 Haematology")
+            st.markdown("####  Haematology")
             num_pcs = st.number_input("Number of presenting complaints?", min_value=1, max_value=5, value=1, key="num_h")
             for i in range(num_pcs):
                 pc = st.selectbox(f"Select Complaint {i+1}", ["Select...", "Fatigue", "Bone Pain", "Bleeding", "Lump", "Other"], key=f"hpc_{i}")
