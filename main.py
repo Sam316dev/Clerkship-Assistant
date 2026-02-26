@@ -705,12 +705,9 @@ with tab_dx:
                 "negates": "CT Brain showing a massive established stroke/bleed instead of reversible edema.",
                 "clinical_pearl": "Lower BP gradually (max 25% reduction in first hours) to prevent cerebral ischemia."
             })
-        if clinical_diffs:
+                if clinical_diffs:
             for idx, diff in enumerate(clinical_diffs):
                 with st.expander(f"**{idx+1}. {diff['title']}**", expanded=True):
                     st.markdown(f"**What Supports This:** {diff['supports']}")
-                    st.markdown(f"**What Negates/Is Missing:** {diff['negates']}")
+                    st.markdown(f"**Findings that would Rule This Out:** {diff['negates']}")
                     st.success(f"**Clinical Pearl:** {diff['clinical_pearl']}")
-        st.write("---")
-        top_diff = clinical_diffs[0]['title'] if clinical_diffs else "an underlying pathology"
-        st.info(f"**Case Summary:** {age}-year-old presenting with {', '.join(complaint_names_for_summary)}. Most likely differential is **{top_diff}**.")
