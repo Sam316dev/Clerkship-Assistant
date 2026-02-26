@@ -12,7 +12,7 @@ with st.sidebar:
     if st.button("Erase Data & Start New Patient", use_container_width=True, type="primary"):
         st.session_state.clear()
         st.rerun()
-        with st.sidebar:
+with st.sidebar:
     st.divider()
     st.markdown("### 💡 Suggestion Box")
     st.link_button("Submit a Suggestion", "https://docs.google.com/forms/d/e/1FAIpQLSd-6PQDVyqYXJzOjjJdnUPg8K-_uQgZBu8b8T5fzw-KGh5y0w/viewform?usp=publish-editor")
