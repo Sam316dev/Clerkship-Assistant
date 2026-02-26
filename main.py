@@ -56,11 +56,11 @@ st.markdown(f"""
                 background-size: cover; background-position: center; border-radius: 12px; padding: 40px; 
                 text-align: center; color: white; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
         <h1 style="color: white; font-size: 3em; margin-bottom: 0px;">🩺 Dr. Sam's Clerkship Assistant</h1>
-        <p style="font-size: 1.2em; opacity: 0.9;">Clinical Reasoning & Case Formulation Tool</p>
+        <p style="font-size: 1.2em; opacity: 0.9;">Strictly an Educational Guide for Clerking — Not a Diagnostic Tool</p>
     </div>
 """, unsafe_allow_html=True)
 
-st.error("**CLINICAL DISCLAIMER:** This tool does not diagnose patients. It is designed to assist medical students in structuring case presentations and developing differential reasoning. Always correlate clinically.", icon="⚠️")
+st.error("**🛑 CLINICAL & LEGAL DISCLAIMER:** This application is strictly an educational clerkship assistant designed to help medical and dental students structure case presentations. **It is NOT a replacement for your clinical judgment or your brain.** You must formulate your own differentials and correlate clinically. \n\n**🔒 PRIVACY NOTICE:** To ensure strict patient confidentiality on the wards, this app uses a zero-storage architecture. No patient data is saved, recorded, or transmitted. Once you refresh or hit 'Erase', the data is gone forever.", icon="⚠️")
 
 # ==========================================
 # INITIALIZE VARIABLES & CLINICAL FLAGS
