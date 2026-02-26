@@ -709,7 +709,7 @@ with tab_dx:
                 "negates": "CT Brain showing a massive established stroke/bleed instead of reversible edema.",
                 "clinical_pearl": "Lower BP gradually (max 25% reduction in first hours) to prevent cerebral ischemia."
             })
-                if clinical_diffs:
+        if clinical_diffs:
             for idx, diff in enumerate(clinical_diffs):
                 with st.expander(f"**{idx+1}. {diff['title']}**", expanded=True):
                     st.markdown(f"**What Supports This:** {diff['supports']}")
