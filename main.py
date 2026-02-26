@@ -620,7 +620,91 @@ with tab_dx:
                 "negates": "Absence of B-symptoms and negative imaging/biopsy.",
                 "clinical_pearl": "Focus on Prostate (Men), Breast/Cervical (Women), or Colorectal screenings."
             })
+# ==========================================
+        # 10. THE "INTERSECTION" SYNDROMES (v24.0)
+        # ==========================================
+        # These use .insert(0) to push life-threatening multi-system overlaps to the TOP of the list.
 
+        # 1. Cardiorenal Syndrome
+        if flag_heart_failure and (flag_uremia or flag_nephrotic_edema):
+            clinical_diffs.insert(0, {
+                "title": "🚨 Cardiorenal Syndrome",
+                "supports": "Concurrent signs of cardiac volume overload (CHF) and renal impairment/uremia.",
+                "negates": "Normal Ejection Fraction and normal Serum Creatinine.",
+                "clinical_pearl": "Diuretic resistance is common. Strict fluid balance and cardiology/nephrology cross-consult required."
+            })
+
+        # 2. Cor Pulmonale (Right Heart Failure secondary to Lung Disease)
+        if flag_chronic_cough and flag_heart_failure:
+            clinical_diffs.insert(0, {
+                "title": "🚨 Cor Pulmonale",
+                "supports": "Chronic respiratory symptoms coupled with signs of right-sided heart failure (edema, elevated JVP).",
+                "negates": "Normal right ventricular size and pressure on Echocardiogram.",
+                "clinical_pearl": "Treat the underlying lung pathology (e.g., COPD/PTB) while managing the fluid overload."
+            })
+
+        # 3. Hepatic Encephalopathy
+        if flag_jaundice and (gcs_score < 15 or "Altered sensorium" in str(hpc_narratives) or flag_seizure):
+            clinical_diffs.insert(0, {
+                "title": "🚨 Hepatic Encephalopathy",
+                "supports": "Liver dysfunction (jaundice/stigmata) presenting with altered consciousness or seizures.",
+                "negates": "Normal blood ammonia levels and normal EEG.",
+                "clinical_pearl": "Look for precipitants: GI bleed, infection, constipation, or electrolyte imbalance. Initiate Lactulose."
+            })
+
+        # 4. Sickle Cell Acute Chest Syndrome (ACS)
+        if (flag_scd_crisis or "Sickle Cell Disease" in pmh_list) and (flag_sudden_dyspnea or flag_pleuritic_pain or flag_chronic_cough):
+            clinical_diffs.insert(0, {
+                "title": "🚨 Acute Chest Syndrome (SCD)",
+                "supports": "Respiratory distress or chest pain in a known Sickle Cell patient.",
+                "negates": "Clear lung fields on CXR.",
+                "clinical_pearl": "A leading cause of death in SCD. Requires urgent exchange transfusion and broad-spectrum antibiotics."
+            })
+
+        # 5. Uremic Encephalopathy
+        if flag_uremia and gcs_score < 15:
+            clinical_diffs.insert(0, {
+                "title": "🚨 Uremic Encephalopathy",
+                "supports": "Severe renal failure features combined with a drop in Glasgow Coma Scale.",
+                "negates": "Alternative causes of coma (e.g., stroke, hypoglycemia).",
+                "clinical_pearl": "Indication for urgent hemodialysis. Do not delay."
+            })
+
+        # 6. Thyroid Storm (Thyrotoxic Crisis)
+        if flag_hyperthyroid and (temp > 38.5 or hr > 110 or flag_arrhythmia):
+            clinical_diffs.insert(0, {
+                "title": "🚨 Thyroid Storm",
+                "supports": f"Hyperthyroid symptoms coupled with hyperpyrexia (T: {temp}) and tachycardia/arrhythmia (HR: {hr}).",
+                "negates": "Normal Free T3/T4 and TSH levels.",
+                "clinical_pearl": "Medical emergency. Treat with Beta-blockers (Propranolol), PTU, and Iodine (give Iodine *after* PTU)."
+            })
+
+        # 7. Sepsis / Septic Shock
+        if (temp > 38.0 or temp < 36.0) and (hr > 90 or rr > 20) and bp_sys < 90:
+            clinical_diffs.insert(0, {
+                "title": "🚨 Septic Shock",
+                "supports": f"SIRS criteria met (T:{temp}, HR:{hr}, RR:{rr}) with hypotension (BP:{bp_sys}/{bp_dia}).",
+                "negates": "Normal lactate and negative blood cultures.",
+                "clinical_pearl": "Commence the 'Sepsis Six' immediately. Do not wait for lab confirmation to start broad-spectrum IV antibiotics."
+            })
+            
+        # 8. Pulmonary-Renal Syndrome (e.g., Goodpasture's / GPA)
+        if flag_hemoptysis and flag_hematuria:
+            clinical_diffs.insert(0, {
+                "title": "🚨 Pulmonary-Renal Syndrome",
+                "supports": "Simultaneous alveolar hemorrhage (hemoptysis) and glomerulonephritis (hematuria).",
+                "negates": "Negative auto-antibodies (Anti-GBM, ANCA).",
+                "clinical_pearl": "Rare but fatal. Think Goodpasture's disease or Granulomatosis with Polyangiitis (GPA). Needs urgent immunosuppression."
+            })
+
+        # 9. Hypertensive Encephalopathy
+        if bp_sys > 180 and (flag_stroke or gcs_score < 15 or flag_seizure):
+            clinical_diffs.insert(0, {
+                "title": "🚨 Hypertensive Encephalopathy",
+                "supports": f"Malignant hypertension (BP {bp_sys}/{bp_dia}) presenting with neurological fallout.",
+                "negates": "CT Brain showing a massive established stroke/bleed instead of reversible edema.",
+                "clinical_pearl": "Lower BP gradually (max 25% reduction in first hours) to prevent cerebral ischemia."
+            })
         if clinical_diffs:
             for idx, diff in enumerate(clinical_diffs):
                 with st.expander(f"**{idx+1}. {diff['title']}**", expanded=True):
